@@ -122,3 +122,68 @@ VALUES
  'Providing meals for families during the holiday season.',
  'Charlotte, NC',
  '2026-12-20');
+
+-- ========================================
+-- Create the Category Table
+-- ========================================
+
+ CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- Create the Service Project Category Junction Table
+-- ========================================
+
+CREATE TABLE service_project_category (
+    project_id INT NOT NULL,
+    category_id INT NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project(project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+        ON DELETE CASCADE
+);
+
+-- ========================================
+-- Insert sample data into Category Table
+-- ========================================
+
+INSERT INTO category (name)
+VALUES
+('Community Service'),
+('Sustainability'),
+('Education');
+
+-- ========================================
+-- Insert sample data into Service Project Category Junction Table
+-- ========================================
+
+
+INSERT INTO service_project_category
+(project_id, category_id)
+VALUES
+(1,1),
+(1,2),
+(2,1),
+(3,1),
+(4,3),
+(5,1),
+(6,2),
+(7,2),
+(8,3),
+(9,2),
+(10,2),
+(11,1),
+(12,3),
+(13,1),
+(14,2),
+(15,1);
