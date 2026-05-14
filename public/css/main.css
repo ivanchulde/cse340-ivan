@@ -36,7 +36,7 @@ body {
     min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER NAV ===== */
 
 nav {
     background-color: var(--primary-color);
