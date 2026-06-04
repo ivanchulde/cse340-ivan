@@ -324,6 +324,43 @@ main a:hover {
     box-shadow: 0 3px 10px var(--shadow-color);
 }
 
+/* ===== FLASH MESSAGES ===== */
+
+.alert {
+    padding: 1rem;
+    margin: 1rem auto;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    max-width: 1000px;
+}
+
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-left: 6px solid #28a745;
+}
+
+.alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-left: 6px solid #dc3545;
+}
+
+.alert.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-left: 6px solid #ffc107;
+}
+
+.alert.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-left: 6px solid #17a2b8;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 
 @media (max-width: 768px) {
