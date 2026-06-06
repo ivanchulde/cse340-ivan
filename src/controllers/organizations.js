@@ -87,7 +87,7 @@ const processEditOrganizationForm = async (req, res) => {
         // Validation failed - loop through errors
         results.array().forEach((error) => {
             req.flash('error', error.msg);
-    });
+        });
 
     // Redirect back to the edit organization form
     return res.redirect('/edit-organization/' + req.params.id);
