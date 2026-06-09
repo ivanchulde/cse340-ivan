@@ -1,5 +1,5 @@
 import db from './db.js'
-
+// Helper function to get all categories
 const getAllCategories = async () => {
 
     const query = `
@@ -12,7 +12,7 @@ const getAllCategories = async () => {
 
     return result.rows;
 }
-
+// Helper function to get category details by ID
 const getCategoryDetails = async (id) => {
     const query = `
         SELECT
@@ -25,7 +25,7 @@ const getCategoryDetails = async (id) => {
     const result = await db.query(query, queryParams);
     return result.rows[0];
 };
-
+// Helper function to get categories assigned to a project
 const getCategoriesByProjectId = async (projectId) => {
     const query = `
         SELECT
@@ -41,7 +41,7 @@ const getCategoriesByProjectId = async (projectId) => {
     const result = await db.query(query, queryParams);
     return result.rows;
 };
-
+// Helper function to assign a category to a project
 const assignCategoryToProject = async (projectId, categoryId) => {
 
     const query = `
@@ -55,7 +55,7 @@ const assignCategoryToProject = async (projectId, categoryId) => {
 
     await db.query(query, queryParams);
 };
-
+// Function to handle category assignments for a project
 const updateCategoryAssignments = async (projectId, categoryIds) => {
 
     const deleteQuery = `
@@ -77,5 +77,38 @@ const updateCategoryAssignments = async (projectId, categoryIds) => {
         await assignCategoryToProject(projectId, categoryId);
     }
 };
+// Function to create a new category
+const createCategory = async (name) => {
 
-export { getAllCategories, getCategoryDetails, getCategoriesByProjectId, updateCategoryAssignments };
+    const query = `
+        INSERT INTO category (name)
+        VALUES ($1)
+        RETURNING category_id;
+    `;
+
+    const result = await db.query(query, [name]);
+
+    return result.rows[0].category_id;
+};
+// Additional function to update category details
+const updateCategory = async (categoryId, name) => {
+
+    const query = `
+        UPDATE category
+        SET name = $1
+        WHERE category_id = $2
+        RETURNING category_id;
+    `;
+
+    const result = await db.query(query, [name, categoryId]);
+
+    if (result.rows.length === 0) {
+        throw new Error('Category not found');
+    }
+
+    return result.rows[0].category_id;
+};
+
+
+
+export { getAllCategories, getCategoryDetails, getCategoriesByProjectId, updateCategoryAssignments, createCategory, updateCategory };
