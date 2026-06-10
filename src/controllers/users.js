@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { createUser, authenticateUser } from '../models/users.js';
+import { createUser, authenticateUser,getAllUsers } from '../models/users.js';
 
 // Show the user registration form
 const showUserRegistrationForm = (req, res) => {
@@ -102,5 +102,15 @@ const requireRole = (role) => {
         next();
     };
 };
+// Show a page with a list of all registered users (admin-only)
+const showUsersPage = async (req, res) => {
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
+    const users = await getAllUsers();
+
+    res.render('users', {
+        title: 'Registered Users',
+        users
+    });
+};
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage };

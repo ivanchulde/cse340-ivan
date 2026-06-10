@@ -361,6 +361,56 @@ main a:hover {
     border-left: 6px solid #17a2b8;
 }
 
+/* ===== USERS TABLE ===== */
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.users-table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.9rem;
+    text-align: left;
+}
+
+.users-table td {
+    padding: 0.9rem;
+    border-bottom: 1px solid #dfe6e9;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: var(--primary-light);
+}
+
+.users-table tr:hover {
+    background-color: #dbeafe;
+}
+
+.users-table {
+    box-shadow: 0 3px 10px var(--shadow-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ===== DASHBOARD ===== */
+
+.dashboard-card {
+    background-color: var(--primary-light);
+    border-left: 5px solid var(--primary-color);
+
+    padding: 1.5rem;
+    margin-top: 1rem;
+
+    border-radius: 10px;
+}
+
+.dashboard-card p {
+    margin-bottom: 0.8rem;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 
 @media (max-width: 768px) {
