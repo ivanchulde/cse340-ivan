@@ -88,7 +88,7 @@ const processNewCategoryForm = async (req, res) => {
 
         results.array().forEach(error => {
             req.flash('error', error.msg);
-        });
+        });x
 
         return res.redirect('/new-category');
     }
