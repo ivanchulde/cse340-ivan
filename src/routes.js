@@ -1,10 +1,10 @@
 import express from 'express';
-
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm} from './controllers/organizations.js';
 import { showProjectsPage, showProjectDetailsPage, projectValidation, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm} from './controllers/projects.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, categoryValidation, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm} from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
+import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 
 
 
@@ -32,4 +32,7 @@ router.get('/new-category', showNewCategoryForm); // Route for new category form
 router.post('/new-category', categoryValidation, processNewCategoryForm); // Route to handle new category form submission
 router.get('/edit-category/:id', showEditCategoryForm); // Route for edit category form
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm); // Route to handle edit category form submission
+router.get('/register', showUserRegistrationForm); // Route for user registration form
+router.post('/register', processUserRegistrationForm); // Route to handle user registration form submission
+
 export default router;
