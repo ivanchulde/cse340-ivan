@@ -26,14 +26,65 @@
     </div>
 
     <% if (user && user.role_name === 'admin') { %>
+
         <div class="dashboard-card">
+
             <h2>Administration</h2>
 
             <p>
                 <a href="/users">View Registered Users</a>
             </p>
+
         </div>
+
     <% } %>
+
+    <div class="dashboard-card">
+
+        <h2>My Volunteer Projects</h2>
+
+        <% if (volunteerProjects.length > 0) { %>
+
+            <ul class="volunteer-list">
+
+                <% volunteerProjects.forEach(project => { %>
+
+                    <li class="volunteer-item">
+
+                        <a href="/project/<%= project.project_id %>">
+                            <%= project.title %>
+                        </a>
+
+                        <form
+                            action="/project/<%= project.project_id %>/remove-volunteer"
+                            method="POST">
+
+                            <input
+                                type="hidden"
+                                name="source"
+                                value="dashboard">
+
+                            <button type="submit">
+                                Remove
+                            </button>
+
+                        </form>
+
+                    </li>
+
+                <% }) %>
+
+            </ul>
+
+        <% } else { %>
+
+            <p>
+                You are not volunteering for any projects.
+            </p>
+
+        <% } %>
+
+    </div>
 
 </main>
 

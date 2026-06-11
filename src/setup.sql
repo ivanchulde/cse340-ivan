@@ -214,3 +214,22 @@ CREATE TABLE users (
     role_id INTEGER REFERENCES roles(role_id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- ========================================
+-- Insert sample data into Users Table
+-- ========================================
+CREATE TABLE project_volunteer (
+    project_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, user_id),
+
+    CONSTRAINT fk_project_volunteer_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project(project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_project_volunteer_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE
+);
